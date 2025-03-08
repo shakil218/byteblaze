@@ -1,40 +1,58 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [theme, setTheme] = useState("light");
 
-  useEffect(()=>{
-    localStorage.setItem("theme",theme)
-    const localTheme = localStorage.getItem("theme")
-    document.querySelector("html").setAttribute("data-theme",localTheme)
-  },[theme])
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
-  const handleToggle =(e)=>{
-    if(e.target.checked){
-      setTheme("dark")
-    }else{
-      setTheme("light")
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
     }
-  }
+  };
   console.log(theme);
   return (
-    <div className="navbar bg-base-100 shadow-xl px-8 sticky">
+    <div className="navbar bg-base-100 shadow-xl px-8 sticky z-10">
       <div className="flex-1">
         <a className="btn btn-ghost text-2xl text-secondary gap-0">
           Byte<span className="text-primary">Blaze</span>
         </a>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li className="text-primary font-bold">
-            <a>Home</a>
-          </li>
-          <li className="font-bold">
-            <a>Blogs</a>
-          </li>
-          <li className="font-bold">
-            <a>Bookmarks</a>
-          </li>
+      <div className="flex items-center gap-5">
+        <ul className="menu menu-horizontal px-1 hidden sm:flex  gap-5">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : "font-bold"
+            }
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to={"/blogs"}
+            className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : "font-bold"
+            }
+          >
+            Blogs
+          </NavLink>
+
+          <NavLink
+            to={"/bookmarks"}
+            className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : "font-bold"
+            }
+          >
+            Bookmarks
+          </NavLink>
         </ul>
         <label className="toggle text-base-content">
           <input
