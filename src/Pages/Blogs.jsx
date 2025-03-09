@@ -1,9 +1,9 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import BlogCard from "../Components/BlogCard/BlogCard";
 
 const Blogs = () => {
-  const blogs = useLoaderData()
+  const blogs = useLoaderData();
 
   return (
     <section className="dark:bg-gray-100 dark:text-gray-800">
@@ -20,22 +20,18 @@ const Blogs = () => {
           />
           <div className="p-6 space-y-2 lg:col-span-5">
             <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">
-              Noster tincidunt reprimique ad pro
+              {blogs[0].title}
             </h3>
             <span className="text-xs dark:text-gray-600">
-              February 19, 2021
+              {new Date(blogs[0].published_at).toLocaleDateString()}
             </span>
-            <p>
-              Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est in
-              graece fuisset, eos affert putent doctus id.
-            </p>
+            <p>{blogs[0].description}</p>
           </div>
         </a>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {
-            blogs.map(blog => <BlogCard key={blog.id} blog={blog}></BlogCard>)
-          }
-          
+          {blogs.map((blog) => (
+            <BlogCard key={blog.id} blog={blog}></BlogCard>
+          ))}
         </div>
         <div className="flex justify-center">
           <button
