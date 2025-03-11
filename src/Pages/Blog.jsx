@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
-import Spinner from "../Components/Spinner/Spinner";
+import { MdBookmarkAdd } from "react-icons/md";
+import { saveBlogs } from "../utils";
 
 const Blog = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const blog = useLoaderData();
-  
 
   const {
     title,
@@ -15,6 +15,10 @@ const Blog = () => {
     comments_count,
     public_reactions_count,
   } = blog;
+
+  const handleBookmarked = (blog)=>{
+    saveBlogs(blog)
+  }
 
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
@@ -77,6 +81,9 @@ const Blog = () => {
               </svg>
               <span>Author</span>
             </Link>
+            <div onClick={()=>handleBookmarked(blog)} className=" p-3 ml-5 rounded-full hover:bg-purple-300 bg-purple-200 cursor-pointer hover:scale-105 overflow-hidden">
+              <MdBookmarkAdd size={20} className="text-secondary"></MdBookmarkAdd>
+            </div>
           </div>
         </div>
         <Outlet></Outlet>

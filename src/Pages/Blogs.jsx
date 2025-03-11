@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData, useNavigation } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import BlogCard from "../Components/BlogCard/BlogCard";
 import Spinner from "../Components/Spinner/Spinner";
 
@@ -32,17 +32,9 @@ const Blogs = () => {
           </div>
         </a>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
+          {blogs.slice(1,19).map((blog) => (
             <BlogCard key={blog.id} blog={blog}></BlogCard>
           ))}
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            className="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600"
-          >
-            Load more posts...
-          </button>
         </div>
       </div>
     </section>

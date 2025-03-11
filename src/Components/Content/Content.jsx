@@ -1,11 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Null_image from "../../assets/404.jpg";
 
 const Content = () => {
 
   const blog = useLoaderData();
-  const { cover_image, title, tags, body_html } = blog;
+  const { cover_image, title, tags, body_html, url } = blog;
 
   return (
     <div className="p-2 mx-auto group hover:no-underline focus:no-underline border-2 border-gray-200 border-opacity-30">
@@ -27,9 +27,9 @@ const Content = () => {
         ))}
       </div>
       <div className=" space-y-2 leading-7">
-        <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
+        <Link to={url} target="_blank" className="text-2xl font-semibold group-hover:underline group-focus:underline">
           {title}
-        </h3>
+        </Link>
         {/* https://learn2torials.com/a/include-html-file-in-react => I am following the instructions of this site to rendering or formatting to a html file to convert a jsx file . */}
         <div dangerouslySetInnerHTML={ {__html: body_html} } />
       </div>
