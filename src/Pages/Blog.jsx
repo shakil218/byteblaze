@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+import Spinner from "../Components/Spinner/Spinner";
 
 const Blog = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const blog = useLoaderData();
+  
 
   const {
     title,
@@ -35,7 +37,10 @@ const Blog = () => {
             <Link
               onClick={() => setTabIndex(0)}
               to=""
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 0 ? 'border border-b-0': 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}>
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 0 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -53,7 +58,9 @@ const Blog = () => {
             <Link
               onClick={() => setTabIndex(1)}
               to={`author`}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 1 ? 'border border-b-0': 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 1 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +81,7 @@ const Blog = () => {
         </div>
         <Outlet></Outlet>
       </article>
-      <div>
-      </div>
+      <div></div>
     </div>
   );
 };
